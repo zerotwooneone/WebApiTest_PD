@@ -7,11 +7,11 @@ A simple test of data access, aggregation, and retrieval.
    This will likely have 3 endpoints 
    * POST ~/api/Reload   
 
-      Will call HTTP GET https://sampledata.petdesk.com/api/appointments and store the results in a sqlite database
+      Will call HTTP GET https://sampledata.petdesk.com/api/appointments and store the results in a sqlite database.   
+	  This will completely overwrite the database on disk.
    * ~/api/Appointments/ByType   
    * ~/api/Appointments/ByMonth   
-
-   ~/api/Appointments/* will require a bearer token, or else unauthorized will be returned
+   * ~/api/Appointments/* will require a bearer token, or else unauthorized will be returned
 
 * TokenGenerator
 
