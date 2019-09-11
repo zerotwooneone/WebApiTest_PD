@@ -51,14 +51,20 @@ namespace Api.Controllers
 
             if (appointments.Any(a =>
                 a.User?.UserId == null 
-                || a.Animal?.AnimalId == null))
+                || a.Animal?.AnimalId == null
+                || string.IsNullOrEmpty(a.AppointmentType)
+                || a.CreateDateTime == null
+                || a.RequestedDateTimeOffset == null))
             {
-                //probably need to log these
+                //probably want to log these, rather than store invalid values
             }
 
             appointments = appointments.Where(a =>
                 a.User?.UserId != null 
-                || a.Animal?.AnimalId != null); 
+                || a.Animal?.AnimalId != null
+                || string.IsNullOrEmpty(a.AppointmentType)
+                || a.CreateDateTime == null
+                || a.RequestedDateTimeOffset == null); 
 
             var usersToAdd = GetDistinct(appointments,
                 a => a.User,
