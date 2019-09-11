@@ -16,6 +16,7 @@ A simple test of data access, aggregation, and retrieval.
 * TokenGenerator
 
    Will simply generate Json Web Token that can be used to access the api via some client
+   Here is a token that does not expire: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo0NDMxOS8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo0NDMxOS8ifQ.5PcK928Rqvmty1_LpofHbWTkIOxk497-CrbEh4Wi9J8
 
 ## Api/Reload
 
