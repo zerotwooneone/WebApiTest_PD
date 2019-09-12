@@ -26,7 +26,7 @@ namespace Api.Controllers
         // GET: api/Appointments
         [Route("ByMonth")]
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetByMonth()
         {
             var result = new List<ByMonthModel>();
 
@@ -43,6 +43,47 @@ namespace Api.Controllers
                     result.Add(new ByMonthModel
                     {
                         Month = DateTimeOffset.FromUnixTimeSeconds((int) rawDatetimeOffset).ToString("MMMM"),
+                        Count = (long) rawCount
+                    });
+                });
+
+            return Ok(result);
+        }
+
+        // GET: api/Appointments
+        [Route("ByType")]
+        [HttpGet]
+        public async Task<IActionResult> GetByType()
+        {
+            var result = new List<ByTypeModel>();
+
+            await RowByRow(@"
+                WITH types(type, str, AppointmentId) AS (
+                    SELECT 
+		                '', 
+		                a.AppointmentType||',',
+		                a.AppointmentId 
+	                FROM Appointment a
+                    UNION ALL 
+	                SELECT 
+		                substr(str, 0, instr(str, ',')),
+		                substr(str, instr(str, ',')+1),
+		                AppointmentId
+                    FROM types WHERE str!=''
+                )
+                SELECT 
+	                type, 
+	                count(AppointmentId) count
+                FROM types 
+                WHERE type!=''
+                GROUP BY type",
+                reader =>
+                {
+                    var rawType = reader["type"];
+                    var rawCount = reader["count"];
+                    result.Add(new ByTypeModel
+                    {
+                        Type = rawType.ToString(),
                         Count = (long) rawCount
                     });
                 });
@@ -76,6 +117,12 @@ namespace Api.Controllers
         {
             return _configuration.GetSection("DataSource").Get<DataSourceConfig>();
         }
+    }
+
+    public class ByTypeModel
+    {
+        public string Type { get; set; }
+        public long Count { get; set; }
     }
 
     public class ByMonthModel
