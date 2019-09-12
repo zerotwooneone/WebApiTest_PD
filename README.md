@@ -1,5 +1,5 @@
 # WebApiTest_PD
-A simple test of data access, aggregation, and retrieval.
+A simple test of data access, aggregation, and retrieval. This project was written in Visual Studio 2019 and is meant to run on .Net Core 2.2
 
 ## Solution Description
 * Api
