@@ -9,9 +9,14 @@ A simple test of data access, aggregation, and retrieval.
 
       Will call HTTP GET https://sampledata.petdesk.com/api/appointments and store the results in a sqlite database.   
 	  This will completely overwrite the database on disk.
-   * ~/api/Appointments/ByType   
-   * ~/api/Appointments/ByMonth   
-   * ~/api/Appointments/* will require a bearer token, or else unauthorized will be returned
+   * GET ~/api/Appointments/ByType   
+
+      Requires a bearer token   
+	  Answers the question "What is the distribution in types of appointments we have?"
+   * GET ~/api/Appointments/ByMonth   
+
+      Requires a bearer token
+	  Answers the question "How many appointment requests do we get a month?"
 
 * TokenGenerator
 
