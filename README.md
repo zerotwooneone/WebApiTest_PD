@@ -15,7 +15,7 @@ A simple test of data access, aggregation, and retrieval.
 	  Answers the question "What is the distribution in types of appointments we have?"
    * GET ~/api/Appointments/ByMonth   
 
-      Requires a bearer token
+      Requires a bearer token   
 	  Answers the question "How many appointment requests do we get a month?"
 
 * TokenGenerator
