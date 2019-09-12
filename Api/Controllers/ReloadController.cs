@@ -109,9 +109,10 @@ namespace Api.Controllers
                 //might want to consider batching these inserts for performance
                 foreach (var appointment in appointmentsToAdd)
                 {
+                    var appointmentType = SanitizeAppointmentType(appointment.AppointmentType);
                     Insert("Appointment",
                         "AppointmentId, AppointmentType,CreateDateTime,RequestedDateTimeOffset,UserId,AnimalId",
-                        $"{appointment.AppointmentId.Value},'{appointment.AppointmentType}',{appointment.CreateDateTime.Value.Ticks},{appointment.RequestedDateTimeOffset.Value.ToUnixTimeSeconds()},{appointment.User?.UserId.Value}, {appointment.Animal?.AnimalId.Value}",
+                        $"{appointment.AppointmentId.Value},'{appointmentType}',{appointment.CreateDateTime.Value.Ticks},{appointment.RequestedDateTimeOffset.Value.ToUnixTimeSeconds()},{appointment.User?.UserId.Value}, {appointment.Animal?.AnimalId.Value}",
                         sqlConnection);
                 }
 
@@ -132,6 +133,11 @@ namespace Api.Controllers
                 }
             }
             return Ok("something");
+        }
+
+        private string SanitizeAppointmentType(string appointmentType)
+        {
+            return appointmentType.Replace(", ", ",");
         }
 
         private static IEnumerable<T> GetDistinct<T>(IEnumerable<AppointmentModel> appointments,

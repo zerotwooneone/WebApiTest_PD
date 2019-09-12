@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SQLite;
-using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Api.DataSource;
 using Microsoft.AspNetCore.Authorization;
@@ -47,7 +47,7 @@ namespace Api.Controllers
                     });
                 });
 
-            return Ok(result);
+            return Ok(result.ToDictionary(m=>m.Month));
         }
 
         // GET: api/Appointments
@@ -88,7 +88,7 @@ namespace Api.Controllers
                     });
                 });
 
-            return Ok(result);
+            return Ok(result.ToDictionary(m=>m.Type));
         }
 
         private async Task RowByRow(string query,
