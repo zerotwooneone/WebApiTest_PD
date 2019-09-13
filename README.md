@@ -23,6 +23,10 @@ A simple test of data access, aggregation, and retrieval. This project was writt
    Will simply generate Json Web Token that can be used to access the api via some client
    Here is a token that does not expire: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo0NDMxOS8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo0NDMxOS8ifQ.5PcK928Rqvmty1_LpofHbWTkIOxk497-CrbEh4Wi9J8
 
+* PetDeskProject1.postman_collection.json   
+
+   A postman collection that was used to test the 3 api endpoints above. This is handy because it already has the auth token included.
+
 ## Api/Reload
 
    Value types are declared as nullable (?) so that if the api fails to return a value we can detect it rather than the value reverting to default.

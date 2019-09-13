@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SQLite;
-using System.Linq;
 using System.Threading.Tasks;
 using Api.DataSource;
 using Microsoft.AspNetCore.Authorization;
@@ -23,12 +22,12 @@ namespace Api.Controllers
             _configuration = configuration;
         }
 
-        // GET: api/Appointments
+        // GET: api/Appointments/ByMonth
         [Route("ByMonth")]
         [HttpGet]
         public async Task<IActionResult> GetByMonth()
         {
-            var result = new List<ByMonthModel>();
+            var result = new Dictionary<string, StatisticsModel>();
 
             await RowByRow(@"
                 select 
@@ -40,22 +39,25 @@ namespace Api.Controllers
                 {
                     var rawDatetimeOffset = reader["RequestedDateTimeOffset"];
                     var rawCount = reader["count"];
-                    result.Add(new ByMonthModel
-                    {
-                        Month = DateTimeOffset.FromUnixTimeSeconds((int) rawDatetimeOffset).ToString("MMMM"),
-                        Count = (long) rawCount
-                    });
+                    var requestedDateTimeOffset = DateTimeOffset.FromUnixTimeSeconds((int) rawDatetimeOffset);
+                    var month = requestedDateTimeOffset.ToString("MMMM");
+                    result.Add(month, 
+                        new StatisticsModel
+                        {
+                            Count = (long) rawCount
+                        }
+                    );
                 });
 
-            return Ok(result.ToDictionary(m=>m.Month));
+            return Ok(result);
         }
 
-        // GET: api/Appointments
+        // GET: api/Appointments/ByType
         [Route("ByType")]
         [HttpGet]
         public async Task<IActionResult> GetByType()
         {
-            var result = new List<ByTypeModel>();
+            var result = new Dictionary<string, StatisticsModel>();
 
             await RowByRow(@"
                 WITH types(type, str, AppointmentId) AS (
@@ -81,14 +83,14 @@ namespace Api.Controllers
                 {
                     var rawType = reader["type"];
                     var rawCount = reader["count"];
-                    result.Add(new ByTypeModel
-                    {
-                        Type = rawType.ToString(),
-                        Count = (long) rawCount
-                    });
+                    result.Add(rawType.ToString(), 
+                        new StatisticsModel
+                        {
+                            Count = (long) rawCount
+                        });
                 });
 
-            return Ok(result.ToDictionary(m=>m.Type));
+            return Ok(result);
         }
 
         private async Task RowByRow(string query,
@@ -117,17 +119,5 @@ namespace Api.Controllers
         {
             return _configuration.GetSection("DataSource").Get<DataSourceConfig>();
         }
-    }
-
-    public class ByTypeModel
-    {
-        public string Type { get; set; }
-        public long Count { get; set; }
-    }
-
-    public class ByMonthModel
-    {
-        public string Month { get; set; }
-        public long Count { get; set; }
     }
 }

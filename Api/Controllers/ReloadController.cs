@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Api.Reload;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace Api.Controllers
 {
@@ -35,7 +34,8 @@ namespace Api.Controllers
                     var response = await httpClient.GetAsync("https://sampledata.petdesk.com/api/appointments");
                     if (!response.IsSuccessStatusCode)
                     {
-                        return StatusCode((int)HttpStatusCode.InternalServerError, $"server returned: {response.StatusCode}");
+                        //we should log request/response info here
+                        return StatusCode((int)HttpStatusCode.InternalServerError, "Something went wrong connecting to a third party");
                     }
 
                     appointments = (await response.Content.ReadAsAsync<IEnumerable<AppointmentModel>>()).ToArray(); //This materializes the values in memory so that we are sure we wont be re-enumerating results.Instead of this, we might want to handle 'pages' of appointments at  time. 
@@ -43,9 +43,15 @@ namespace Api.Controllers
                 }
                 catch (HttpRequestException e)
                 {
-                    return StatusCode((int) HttpStatusCode.InternalServerError, e.ToString());
+                    //we should log this exception
+                    return StatusCode((int) HttpStatusCode.InternalServerError, "Something went wrong connecting to a third party");
                 }
             }
+
+            //note to bring up: This may be appropriate for this sample data, but I think I would do this differently if I were to write it again.
+            // I would not do appointments.ToArray() but rather do appointments.Select() and return an object that contains collections of valid
+            // appointments, users, and animals as well as doing the logging of invalid input in one pass. The reason being, we could change the
+            // above to retrieve pages of results at a time through a custom IEnumerable, and not have to change the validation or logic downstream.
 
             if (appointments.Any(a =>
                 a.User?.UserId == null 
@@ -130,7 +136,7 @@ namespace Api.Controllers
                         sqlConnection);
                 }
             }
-            return Ok("something");
+            return Ok("success");
         }
 
         private string SanitizeAppointmentType(string appointmentType)

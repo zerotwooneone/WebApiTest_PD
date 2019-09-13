@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "7ee26093-5bdc-4301-b561-90704e990fd3",
+		"name": "PetDeskProject1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Reload",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://localhost:44319/api/Reload",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44319",
+					"path": [
+						"api",
+						"Reload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Appointments By Month",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44319/api/Appointments/ByMonth",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44319",
+					"path": [
+						"api",
+						"Appointments",
+						"ByMonth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Appointments By Month",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:44319/api/Appointments/ByMonth",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44319",
+							"path": [
+								"api",
+								"Appointments",
+								"ByMonth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 13 Sep 2019 00:23:23 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"January\": {\n        \"count\": 1\n    },\n    \"February\": {\n        \"count\": 1\n    },\n    \"April\": {\n        \"count\": 3\n    },\n    \"May\": {\n        \"count\": 1\n    },\n    \"June\": {\n        \"count\": 6\n    },\n    \"July\": {\n        \"count\": 1\n    },\n    \"August\": {\n        \"count\": 4\n    },\n    \"October\": {\n        \"count\": 2\n    },\n    \"December\": {\n        \"count\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Appointments By Type",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44319/api/Appointments/ByType",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44319",
+					"path": [
+						"api",
+						"Appointments",
+						"ByType"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Appointments By Type",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:44319/api/Appointments/ByType",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44319",
+							"path": [
+								"api",
+								"Appointments",
+								"ByType"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Server",
+							"value": "Microsoft-IIS/10.0"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "ASP.NET"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 13 Sep 2019 00:20:56 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Annual Physical Exam\": {\n        \"count\": 2\n    },\n    \"Bath\": {\n        \"count\": 1\n    },\n    \"Dental\": {\n        \"count\": 2\n    },\n    \"Full Cut\": {\n        \"count\": 1\n    },\n    \"Medication Refill\": {\n        \"count\": 3\n    },\n    \"Nail Trim\": {\n        \"count\": 2\n    },\n    \"New Client/Patient Visit\": {\n        \"count\": 1\n    },\n    \"Other\": {\n        \"count\": 2\n    },\n    \"Overnight Boarding\": {\n        \"count\": 1\n    },\n    \"Sick Pet Exam\": {\n        \"count\": 1\n    },\n    \"Surgery\": {\n        \"count\": 1\n    },\n    \"Trim Cut\": {\n        \"count\": 1\n    },\n    \"Vaccinations\": {\n        \"count\": 4\n    }\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo0NDMxOS8iLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo0NDMxOS8ifQ.5PcK928Rqvmty1_LpofHbWTkIOxk497-CrbEh4Wi9J8",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "92189d51-bdad-4457-8642-6f31cc467059",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9295083b-20a2-4f84-9b1e-d029d5cb3c7b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
