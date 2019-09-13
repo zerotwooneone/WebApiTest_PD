@@ -27,6 +27,13 @@ A simple test of data access, aggregation, and retrieval. This project was writt
 
    A postman collection that was used to test the 3 api endpoints above. This is handy because it already has the auth token included.
 
-## Api/Reload
+## Branch Description
+
+* v0.0.1 Just gets data from the endpoint and (re)creates a database
+* v0.0.2 Filled out TokenGenerator and wired up JWT requirement in Api project
+* v0.0.3 Added queries on the database for ByMonth and ByType
+* v0.1.0 Cleaned things up for submission
+
+## Api/Reload/*Model Classes
 
    Value types are declared as nullable (?) so that if the api fails to return a value we can detect it rather than the value reverting to default.
