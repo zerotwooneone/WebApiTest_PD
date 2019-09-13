@@ -31,8 +31,10 @@ A simple test of data access, aggregation, and retrieval. This project was writt
 
 * v0.0.1 Just gets data from the endpoint and (re)creates a database
 * v0.0.2 Filled out TokenGenerator and wired up JWT requirement in Api project
+   * Changed reload controller to use hardcoded data for now
 * v0.0.3 Added queries on the database for ByMonth and ByType
 * v0.1.0 Cleaned things up for submission
+   * Changed reload controller to real data again
 
 ## Api/Reload/*Model Classes
 
